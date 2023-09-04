@@ -24,7 +24,7 @@ jobs:
         - name: Release
           run: |
             echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
-            npm login --registry=https://registry.npmjs.org/
+            npm whoami
             pnpm run shipit
           env:
             GITHUB_TOKEN: ${{ secrets.PACKAGE_GITHUB_TOKEN }}
