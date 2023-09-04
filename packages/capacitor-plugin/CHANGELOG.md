@@ -1,5 +1,7 @@
-# 1.0.0 (2023-05-17)
+# 1.0.1 (2023-09-04)
 
+### Feature
+* Use Dynamic Key Value Pair as Intent Extra
 
 ### Bug Fixes
 
