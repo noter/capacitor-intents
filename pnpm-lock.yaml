@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -94,7 +98,7 @@ importers:
       '@types/react-router-dom':
         specifier: ^5.3.3
         version: 5.3.3
-      capacitor-android-intents:
+      android-intents-capacitor:
         specifier: workspace:*
         version: link:../capacitor-plugin
       ionicons:
