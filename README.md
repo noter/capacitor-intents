@@ -13,6 +13,31 @@ npx cap sync
 
 See `example-app` in `packages` folder.
 
+## Simple Example Zebra Device
+Register Listener:
+```Typescript
+CapacitorIntents.registerBroadcastReceiver({
+    filters: ['com.your.custom.action', 'com.symbol.datawedge.api.RESULT_ACTION'],
+    },
+    // Callback function
+    (intent) => {
+        console.log('Received Intent: ', intent.extras);
+    })
+
+CapacitorIntents.sendBroadcastIntent({ 
+    action: 'com.your.custom.action', 
+    // You can add as many extra Key : Value Pairs as Needed
+    extras: {
+        "com.symbol.datawedge.api.SOFT_SCAN_TRIGGER":   "TOGGLE_SCANNING"
+        }
+    })
+    .then(
+        (result) => {
+            console.log('sendCommand: ', result);
+        }
+    );
+```
+
 ## API
 
 <docgen-index>
