@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/fetttttjoe/capacitor-intents//compare/v1.0.0...v1.1.0) (2023-09-04)
+
+
+### Features
+
+* update plugin to support key values for intent extras ([cbb2f71](https://github.com/fetttttjoe/capacitor-intents//commit/cbb2f711c99c94e0377c6ddd25d8e1112ef9c1e8))
+
 # 1.0.3 (2023-09-04)
 ### Bug Fixes
 
