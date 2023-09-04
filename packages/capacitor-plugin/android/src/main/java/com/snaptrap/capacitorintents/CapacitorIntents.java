@@ -1,4 +1,4 @@
-package com.itmikes.capacitorintents;
+package com.snaptrap.capacitorintents;
 
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
