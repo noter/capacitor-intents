@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/fetttttjoe/capacitor-intents/compare/v1.1.0...v1.1.1) (2023-09-04)
+
+
+### Bug Fixes
+
+* include semantic-release in dev dependencies ([129529c](https://github.com/fetttttjoe/capacitor-intents/commit/129529cc1e9e287fc4082c17995c991af0a5ca9c))
+
 # [1.1.0](https://github.com/fetttttjoe/capacitor-intents//compare/v1.0.0...v1.1.0) (2023-09-04)
 
 
