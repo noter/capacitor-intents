@@ -1,4 +1,4 @@
-# capacitor-intents-android
+# capacitor-intents-android 
 
 Simple intent tools for Capacitor on Android platform.
 
