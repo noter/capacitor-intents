@@ -1,14 +1,17 @@
 # 1.0.3 (2023-09-04)
 ### Bug Fixes
+
 * Add Iterator Java Package ([1fd1066]https://github.com/fetttttjoe/capacitor-intents/commit/1fd1066bd955895a7f0d1c58835bbc01d9f4b378)
 
 # 1.0.2 (2023-09-04)
 ### Bug Fix
+
 * Messed up Release
 
 # 1.0.1 (2023-09-04)
 
 ### Feature
+
 * Use Dynamic Key Value Pair as Intent Extra
 
 ### Bug Fixes
