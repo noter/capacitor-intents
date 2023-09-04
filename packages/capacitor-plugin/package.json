@@ -62,7 +62,8 @@
     "prettier-plugin-java": "~2.1.0",
     "rimraf": "^3.0.2",
     "rollup": "^3.21.8",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "semantic-release": "^21.1.1"
   },
   "peerDependencies": {
     "@capacitor/core": "^4.0.0"
@@ -71,8 +72,5 @@
     "android": {
       "src": "android"
     }
-  },
-  "dependencies": {
-    "semantic-release": "^21.1.1"
   }
 }
