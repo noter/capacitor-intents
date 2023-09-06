@@ -12,8 +12,8 @@ npx cap sync
 ## Usage
 
 ## Simple Example Zebra Device
-Register Listener:
 ```Typescript
+// Register Listener:
 CapacitorIntents.registerBroadcastReceiver({
     filters: ['com.your.custom.action', 'com.symbol.datawedge.api.RESULT_ACTION'],
     categories: ['android.intent.category.DEFAULT']
