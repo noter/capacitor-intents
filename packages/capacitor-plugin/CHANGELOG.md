@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/fetttttjoe/capacitor-intents/compare/v1.1.1...v1.2.0) (2023-09-06)
+
+
+### Features
+
+* enable categories on intent ([eb63e8f](https://github.com/fetttttjoe/capacitor-intents/commit/eb63e8f100abe53dde68d40971bf01dc07a6f914))
+
 # [1.2.0-next.1](https://github.com/fetttttjoe/capacitor-intents/compare/v1.1.1...v1.2.0-next.1) (2023-09-06)
 
 
