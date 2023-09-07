@@ -25,7 +25,6 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.os.Bundle;
 
 @CapacitorPlugin(name = "CapacitorIntentsPlugin")
 public class CapacitorIntents extends Plugin {
@@ -60,7 +59,6 @@ public class CapacitorIntents extends Plugin {
         JSObject extras = call.getObject("extras");
         Intent intended = new Intent(action);
         Iterator<String> keys = extras.keys();
-
         while (keys.hasNext()) {
             String key = keys.next();
             String value = extras.getString(key);
@@ -70,7 +68,7 @@ public class CapacitorIntents extends Plugin {
         call.resolve();
     }
 
-    @PluginMethod 
+    @PluginMethod
     public void createBundle(PluginCall call) {
         String action = call.getString("action");
         String extra = call.getString("extra");
@@ -81,24 +79,22 @@ public class CapacitorIntents extends Plugin {
         this.getContext().sendBroadcast(intent);
         call.resolve();
     }
-    
+
     public Bundle createBundleFromJsonObject(JSONObject bundleConfig) {
         Bundle bundle = new Bundle();
-    
         try {
             // Get an iterator for the keys of the JSON object
             Iterator<String> keys = bundleConfig.keys();
             while (keys.hasNext()) {
                 String key = keys.next();
                 Object value = bundleConfig.get(key);
-    
                 if (value instanceof String) {
                     // If the value is a string, put it directly in the bundle
                     bundle.putString(key, (String) value);
                 } else if (value instanceof JSONObject) {
                     // If the value is a JSONObject, recursively create a nested bundle
                     bundle.putBundle(key, createBundleFromJsonObject((JSONObject) value));
-                } 
+                }
                 // else {
                 //     // Handle other types as needed (e.g., boolean, integer, etc.)
                 //     // You can extend this function to handle other data types as necessary
@@ -107,10 +103,9 @@ public class CapacitorIntents extends Plugin {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    
         return bundle;
     }
-    
+
     private void requestBroadcastUpdates(final PluginCall call) throws JSONException {
         final String callBackID = call.getCallbackId();
         IntentFilter ifilt = new IntentFilter();
