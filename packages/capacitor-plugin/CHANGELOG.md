@@ -1,3 +1,10 @@
+# [1.3.0-next.3](https://github.com/fetttttjoe/capacitor-intents/compare/v1.3.0-next.2...v1.3.0-next.3) (2023-09-07)
+
+
+### Bug Fixes
+
+* wrong copy paste on extra in bundle creation ([e45ccba](https://github.com/fetttttjoe/capacitor-intents/commit/e45ccbaab065f7fc33a1bf6225eec5293dea5b68))
+
 # [1.3.0-next.2](https://github.com/fetttttjoe/capacitor-intents/compare/v1.3.0-next.1...v1.3.0-next.2) (2023-09-07)
 
 
