@@ -10,6 +10,10 @@ export class CapacitorIntentsPluginWeb extends WebPlugin implements CapacitorInt
     throw new Error('Feature not implemented in web.');
   }
 
+  async createBundle(_options: { action: string, bundleConfig: { [key: string]: any } }): Promise<void> {
+    throw new Error('Feature not implemented in web.');
+  }
+  
   async unregisterBroadcastReceiver(_options: { id: string }) {
     throw new Error('Feature not implemented in web.');
   }

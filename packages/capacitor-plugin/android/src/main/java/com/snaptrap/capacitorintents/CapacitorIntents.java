@@ -25,6 +25,7 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.os.Bundle;
 
 @CapacitorPlugin(name = "CapacitorIntentsPlugin")
 public class CapacitorIntents extends Plugin {
@@ -69,6 +70,41 @@ public class CapacitorIntents extends Plugin {
         call.resolve();
     }
 
+    @PluginMethod 
+    public void createBundle(PuginCall call) {
+        String actionToUse = call.getString("action");
+        JSONObject bundleConfig = call.getObject("bundleConfig");
+        Bundle bundle = createBundleFromJsonObject(bundleConfig);
+        Intent intended = new Intent(actionToUse);
+        intended.putExtras(bundle);
+        this.getContext().sendBroadcast(intended);
+        call.resolve();
+    }
+    
+    public Bundle createBundleFromJsonObject(JSONObject jsonObject) {
+        Bundle bundle = new Bundle();
+    
+        try {
+            // Iterate through the keys of the JSON object
+            for (String key : jsonObject.keySet()) {
+                Object value = jsonObject.get(key);
+    
+                if (value instanceof String) {
+                    bundle.putString(key, (String) value);
+                } else if (value instanceof JSONObject) {
+                    bundle.putBundle(key, createBundleFromJsonObject((JSONObject) value));
+                } 
+                // else {
+                //     // Handle other types as needed (e.g., boolean, integer, etc.)
+                // }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    
+        return bundle;
+    }
+    
     private void requestBroadcastUpdates(final PluginCall call) throws JSONException {
         final String callBackID = call.getCallbackId();
         IntentFilter ifilt = new IntentFilter();

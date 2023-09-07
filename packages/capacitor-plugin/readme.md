@@ -42,6 +42,7 @@ CapacitorIntents.sendBroadcastIntent({
 <docgen-index>
 
 * [`registerBroadcastReceiver(...)`](#registerbroadcastreceiver)
+* [`createBundle(...)`](#createbundle)
 * [`unregisterBroadcastReceiver(...)`](#unregisterbroadcastreceiver)
 * [`sendBroadcastIntent(...)`](#sendbroadcastintent)
 
@@ -60,6 +61,21 @@ registerBroadcastReceiver(options: { filters: string[]; categories?: string[]; }
 | -------------- | ------------------------------------------------------- |
 | **`options`**  | <code>{ filters: {}; categories?: {}; }</code>          |
 | **`callback`** | <code>(data: { [key: string]: any; }) =&gt; void</code> |
+
+**Returns:** <code>any</code>
+
+--------------------
+
+
+### createBundle(...)
+
+```typescript
+createBundle(options: { action: string; bundleConfig: { [key: string]: any; }; }) => any
+```
+
+| Param         | Type                                                                    |
+| ------------- | ----------------------------------------------------------------------- |
+| **`options`** | <code>{ action: string; bundleConfig: { [key: string]: any; }; }</code> |
 
 **Returns:** <code>any</code>
 
