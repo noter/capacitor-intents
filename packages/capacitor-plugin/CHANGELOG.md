@@ -1,3 +1,10 @@
+# [1.3.0-next.1](https://github.com/fetttttjoe/capacitor-intents/compare/v1.2.0...v1.3.0-next.1) (2023-09-07)
+
+
+### Features
+
+* first test for bundle creation based on object ([6ed2630](https://github.com/fetttttjoe/capacitor-intents/commit/6ed26302dc13aa766e68716f2ab83e0a09e26709))
+
 # [1.2.0](https://github.com/fetttttjoe/capacitor-intents/compare/v1.1.1...v1.2.0) (2023-09-06)
 
 
