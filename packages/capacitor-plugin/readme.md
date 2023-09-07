@@ -70,12 +70,12 @@ registerBroadcastReceiver(options: { filters: string[]; categories?: string[]; }
 ### createBundle(...)
 
 ```typescript
-createBundle(options: { action: string; bundleConfig: { [key: string]: any; }; }) => any
+createBundle(options: { action: string; extra: string; bundleConfig: { [key: string]: any; }; }) => any
 ```
 
-| Param         | Type                                                                    |
-| ------------- | ----------------------------------------------------------------------- |
-| **`options`** | <code>{ action: string; bundleConfig: { [key: string]: any; }; }</code> |
+| Param         | Type                                                                                   |
+| ------------- | -------------------------------------------------------------------------------------- |
+| **`options`** | <code>{ action: string; extra: string; bundleConfig: { [key: string]: any; }; }</code> |
 
 **Returns:** <code>any</code>
 

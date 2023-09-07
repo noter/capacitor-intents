@@ -56,14 +56,14 @@ public class CapacitorIntents extends Plugin {
 
     @PluginMethod
     public void sendBroadcastIntent(PluginCall call) {
-        String actionToUse = call.getString("action");
-        JSObject extraData = call.getObject("extras");
-        Intent intended = new Intent(actionToUse);
-        Iterator<String> keys = extraData.keys();
+        String action = call.getString("action");
+        JSObject extras = call.getObject("extras");
+        Intent intended = new Intent(action);
+        Iterator<String> keys = extras.keys();
 
         while (keys.hasNext()) {
             String key = keys.next();
-            String value = extraData.getString(key);
+            String value = extras.getString(key);
             intended.putExtra(key, value);
         }
         this.getContext().sendBroadcast(intended);
@@ -71,31 +71,38 @@ public class CapacitorIntents extends Plugin {
     }
 
     @PluginMethod 
-    public void createBundle(PuginCall call) {
-        String actionToUse = call.getString("action");
+    public void createBundle(PluginCall call) {
+        String action = call.getString("action");
+        String extra = call.getObject("extra");
         JSONObject bundleConfig = call.getObject("bundleConfig");
         Bundle bundle = createBundleFromJsonObject(bundleConfig);
-        Intent intended = new Intent(actionToUse);
-        intended.putExtras(bundle);
+        Intent intent = new Intent(action);
+        intent.setAction(actionToUse);
+        intent.putExtra(extra, bundle);
         this.getContext().sendBroadcast(intended);
         call.resolve();
     }
     
-    public Bundle createBundleFromJsonObject(JSONObject jsonObject) {
+    public Bundle createBundleFromJsonObject(JSONObject bundleConfig) {
         Bundle bundle = new Bundle();
     
         try {
-            // Iterate through the keys of the JSON object
-            for (String key : jsonObject.keySet()) {
-                Object value = jsonObject.get(key);
+            // Get an iterator for the keys of the JSON object
+            Iterator<String> keys = bundleConfig.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                Object value = bundleConfig.get(key);
     
                 if (value instanceof String) {
+                    // If the value is a string, put it directly in the bundle
                     bundle.putString(key, (String) value);
                 } else if (value instanceof JSONObject) {
+                    // If the value is a JSONObject, recursively create a nested bundle
                     bundle.putBundle(key, createBundleFromJsonObject((JSONObject) value));
                 } 
                 // else {
                 //     // Handle other types as needed (e.g., boolean, integer, etc.)
+                //     // You can extend this function to handle other data types as necessary
                 // }
             }
         } catch (JSONException e) {
