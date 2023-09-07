@@ -101,6 +101,21 @@ unregisterBroadcastReceiver(options: { id: string; }) => any
 --------------------
 
 
+### createBundle(...)
+
+```typescript
+createBundle(options: { action: string; extra: string; bundleConfig: { [key: string]: any; }; }) => any
+```
+
+| Param         | Type                                                                                   |
+| ------------- | -------------------------------------------------------------------------------------- |
+| **`options`** | <code>{ action: string; extra: string; bundleConfig: { [key: string]: any; }; }</code> |
+
+**Returns:** <code>any</code>
+
+--------------------
+
+
 ### sendBroadcastIntent(...)
 
 ```typescript
