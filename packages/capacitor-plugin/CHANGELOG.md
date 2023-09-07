@@ -1,3 +1,10 @@
+# [1.3.0-next.4](https://github.com/fetttttjoe/capacitor-intents/compare/v1.3.0-next.3...v1.3.0-next.4) (2023-09-07)
+
+
+### Bug Fixes
+
+* remove extra action call ([7a60562](https://github.com/fetttttjoe/capacitor-intents/commit/7a6056207b7495ff87d0967141d3eea230eb17e7))
+
 # [1.3.0-next.3](https://github.com/fetttttjoe/capacitor-intents/compare/v1.3.0-next.2...v1.3.0-next.3) (2023-09-07)
 
 
