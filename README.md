@@ -53,7 +53,6 @@ CapacitorIntents.sendBroadcastIntent({
             },
         },
     };
-CapacitorIntents.createProfile(profileConfig2);
 CapacitorIntents.createBundle({ action: "com.symbol.datawedge.api.ACTION", extra: "com.symbol.datawedge.api.SET_CONFIG", bundleConfig: profileConfig });
 
 ```
