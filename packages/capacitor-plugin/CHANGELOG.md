@@ -1,3 +1,10 @@
+# [1.3.0-next.2](https://github.com/fetttttjoe/capacitor-intents/compare/v1.3.0-next.1...v1.3.0-next.2) (2023-09-07)
+
+
+### Bug Fixes
+
+* add correct extra to bundle creation; fix mistake on objectiteration ([ee81fa0](https://github.com/fetttttjoe/capacitor-intents/commit/ee81fa04f2a7a5d51aff38728fff2580474007f4))
+
 # [1.3.0-next.1](https://github.com/fetttttjoe/capacitor-intents/compare/v1.2.0...v1.3.0-next.1) (2023-09-07)
 
 
