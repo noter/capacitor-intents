@@ -77,9 +77,8 @@ public class CapacitorIntents extends Plugin {
         JSONObject bundleConfig = call.getObject("bundleConfig");
         Bundle bundle = createBundleFromJsonObject(bundleConfig);
         Intent intent = new Intent(action);
-        intent.setAction(actionToUse);
         intent.putExtra(extra, bundle);
-        this.getContext().sendBroadcast(intended);
+        this.getContext().sendBroadcast(intent);
         call.resolve();
     }
     
