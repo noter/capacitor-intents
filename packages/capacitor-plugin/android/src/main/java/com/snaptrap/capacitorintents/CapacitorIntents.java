@@ -73,7 +73,7 @@ public class CapacitorIntents extends Plugin {
     @PluginMethod 
     public void createBundle(PluginCall call) {
         String action = call.getString("action");
-        String extra = call.getObject("extra");
+        String extra = call.getString("extra");
         JSONObject bundleConfig = call.getObject("bundleConfig");
         Bundle bundle = createBundleFromJsonObject(bundleConfig);
         Intent intent = new Intent(action);
