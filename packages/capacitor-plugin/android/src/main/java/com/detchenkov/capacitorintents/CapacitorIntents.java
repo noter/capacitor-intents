@@ -80,7 +80,7 @@ public class CapacitorIntents extends Plugin {
         call.resolve();
     }
 
-    public Bundle convertJsObjectToBundle(JSONObject jsObject)
+    public Bundle convertJsObjectToBundle(JSONObject jsObject) {
         Bundle bundle = new Bundle();
 		try {
 	        for (Iterator<String> it = jsObject.keys(); it.hasNext(); ) {
