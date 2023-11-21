@@ -1,3 +1,10 @@
+# [1.3.0-next.3](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0-next.2...v1.3.0-next.3) (2023-11-21)
+
+
+### Features
+
+* bundles ([942faf4](https://github.com/detchenkov/capacitor-intents/commit/942faf4732d70629cd050d42560de172fb6f1a18))
+
 # [1.3.0-next.2](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0-next.1...v1.3.0-next.2) (2023-11-21)
 
 
