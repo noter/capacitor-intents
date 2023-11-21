@@ -1,3 +1,10 @@
+# [1.3.0-next.5](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0-next.4...v1.3.0-next.5) (2023-11-21)
+
+
+### Bug Fixes
+
+* missing categories ([b0db12e](https://github.com/detchenkov/capacitor-intents/commit/b0db12e0fbd16fc77f105f466faccc2518f63be8))
+
 # [1.3.0-next.4](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0-next.3...v1.3.0-next.4) (2023-11-21)
 
 
