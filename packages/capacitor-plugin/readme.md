@@ -60,7 +60,6 @@ CapacitorIntents.createBundle({ action: "com.symbol.datawedge.api.ACTION", extra
 <docgen-index>
 
 * [`registerBroadcastReceiver(...)`](#registerbroadcastreceiver)
-* [`createBundle(...)`](#createbundle)
 * [`unregisterBroadcastReceiver(...)`](#unregisterbroadcastreceiver)
 * [`sendBroadcastIntent(...)`](#sendbroadcastintent)
 
@@ -72,28 +71,13 @@ CapacitorIntents.createBundle({ action: "com.symbol.datawedge.api.ACTION", extra
 ### registerBroadcastReceiver(...)
 
 ```typescript
-registerBroadcastReceiver(options: { filters: string[]; categories?: string[]; }, callback: (data: { [key: string]: any; }) => void) => any
+registerBroadcastReceiver(options: { filters: string[]; }, callback: (data: { [key: string]: any; }) => void) => any
 ```
 
 | Param          | Type                                                    |
 | -------------- | ------------------------------------------------------- |
-| **`options`**  | <code>{ filters: {}; categories?: {}; }</code>          |
+| **`options`**  | <code>{ filters: {}; }</code>                           |
 | **`callback`** | <code>(data: { [key: string]: any; }) =&gt; void</code> |
-
-**Returns:** <code>any</code>
-
---------------------
-
-
-### createBundle(...)
-
-```typescript
-createBundle(options: { action: string; extra: string; bundleConfig: { [key: string]: any; }; }) => any
-```
-
-| Param         | Type                                                                                   |
-| ------------- | -------------------------------------------------------------------------------------- |
-| **`options`** | <code>{ action: string; extra: string; bundleConfig: { [key: string]: any; }; }</code> |
 
 **Returns:** <code>any</code>
 
@@ -118,12 +102,12 @@ unregisterBroadcastReceiver(options: { id: string; }) => any
 ### sendBroadcastIntent(...)
 
 ```typescript
-sendBroadcastIntent(options: { action: string; extras: { [key: string]: any; }; }) => any
+sendBroadcastIntent(options: { action: string; value: { [key: string]: any; }; }) => any
 ```
 
-| Param         | Type                                                              |
-| ------------- | ----------------------------------------------------------------- |
-| **`options`** | <code>{ action: string; extras: { [key: string]: any; }; }</code> |
+| Param         | Type                                                             |
+| ------------- | ---------------------------------------------------------------- |
+| **`options`** | <code>{ action: string; value: { [key: string]: any; }; }</code> |
 
 **Returns:** <code>any</code>
 

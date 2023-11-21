@@ -4,13 +4,9 @@ import type { CapacitorIntentsPlugin } from './definitions';
 
 export class CapacitorIntentsPluginWeb extends WebPlugin implements CapacitorIntentsPlugin {
   async registerBroadcastReceiver(
-    _options: { filters: string[]; categories?: string[] },
+    _options: { filters: string[] },
     _callback: (data: { [key: string]: any }) => void
   ): Promise<string> {
-    throw new Error('Feature not implemented in web.');
-  }
-
-  async createBundle(_options: { action: string; extra: string; bundleConfig: { [key: string]: any } }): Promise<void> {
     throw new Error('Feature not implemented in web.');
   }
 
@@ -18,7 +14,7 @@ export class CapacitorIntentsPluginWeb extends WebPlugin implements CapacitorInt
     throw new Error('Feature not implemented in web.');
   }
 
-  async sendBroadcastIntent(_options: { action: string; extras: { [key: string]: any } }): Promise<void> {
+  async sendBroadcastIntent(_options: { action: string; value: { [key: string]: any } }): Promise<void> {
     throw new Error('Feature not implemented in web.');
   }
 }
