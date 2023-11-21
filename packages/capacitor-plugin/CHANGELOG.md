@@ -1,3 +1,9 @@
+# [1.3.1-next.4](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0-next.3...v1.3.1-next.4) (2023-11-21)
+
+### Bug Fixes
+
+* Passed to the PR proposed by [tkvw](https://github.com/tkvw/capacitor-intents/tree/main)
+
 # [1.3.0-next.4](https://github.com/fetttttjoe/capacitor-intents/compare/v1.3.0-next.3...v1.3.0-next.4) (2023-09-07)
 
 
