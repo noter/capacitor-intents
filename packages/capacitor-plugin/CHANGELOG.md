@@ -1,3 +1,11 @@
+# [1.3.0-next.2](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0-next.1...v1.3.0-next.2) (2023-11-21)
+
+
+### Bug Fixes
+
+* wrong export ([f50cc29](https://github.com/detchenkov/capacitor-intents/commit/f50cc290399380dee5d7c37f768e172c7e584184))
+* wrong parameters ([2c83114](https://github.com/detchenkov/capacitor-intents/commit/2c831146e14bfcd1eb269c9c6de14d3c186bfe7e))
+
 # [1.3.0-next.1](https://github.com/detchenkov/capacitor-intents/compare/v1.2.0...v1.3.0-next.1) (2023-11-21)
 
 
