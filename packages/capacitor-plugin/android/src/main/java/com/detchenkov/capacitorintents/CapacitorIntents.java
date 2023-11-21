@@ -55,16 +55,15 @@ public class CapacitorIntents extends Plugin {
 
     @PluginMethod
     public void sendBroadcastIntent(PluginCall call) {
-        String actionToUse = call.getString("action");
-        JSObject passingData = call.getObject("extras");
-        Intent intended = new Intent(actionToUse);
+        String action = call.getString("action");
+        JSObject extras = call.getObject("extras");
+        Intent intended = new Intent(action);
         Iterator<String> keys = extras.keys();
         while (keys.hasNext()) {
             String key = keys.next();
             String value = extras.getString(key);
             intended.putExtra(key, value);
         }
-
         this.getContext().sendBroadcast(intended);
         call.resolve();
     }
@@ -81,29 +80,31 @@ public class CapacitorIntents extends Plugin {
         call.resolve();
     }
 
-    public Bundle convertJsObjectToBundle(JSONObject jsObject) throws JSONException {
+    public Bundle convertJsObjectToBundle(JSONObject jsObject)
         Bundle bundle = new Bundle();
-
-        for (Iterator<String> it = jsObject.keys(); it.hasNext(); ) {
-            String key = it.next();
-            Object value = jsObject.get(key);
-            if (value instanceof String) {
-                bundle.putString(key, (String) value);
-            } else if (value instanceof Integer) {
-                bundle.putInt(key, (Integer) value);
-            } else if (value instanceof Double) {
-                bundle.putDouble(key, (Double) value);
-            } else if (value instanceof Boolean) {
-                bundle.putBoolean(key, (Boolean) value);
-            } else if (value instanceof JSONObject) {
-                bundle.putBundle(key, convertJsObjectToBundle((JSONObject) value));
-            } else if (value instanceof JSONArray) {
-                addJsArrayToBundle(bundle,key,(JSONArray) value);
-            } else {
-                bundle.putString(key, value.toString());
-            }
+		try {
+	        for (Iterator<String> it = jsObject.keys(); it.hasNext(); ) {
+	            String key = it.next();
+	            Object value = jsObject.get(key);
+	            if (value instanceof String) {
+	                bundle.putString(key, (String) value);
+	            } else if (value instanceof Integer) {
+	                bundle.putInt(key, (Integer) value);
+	            } else if (value instanceof Double) {
+	                bundle.putDouble(key, (Double) value);
+	            } else if (value instanceof Boolean) {
+	                bundle.putBoolean(key, (Boolean) value);
+	            } else if (value instanceof JSONObject) {
+	                bundle.putBundle(key, convertJsObjectToBundle((JSONObject) value));
+	            } else if (value instanceof JSONArray) {
+	                addJsArrayToBundle(bundle,key,(JSONArray) value);
+	            } else {
+	                bundle.putString(key, value.toString());
+	            }
+	        }
+		} catch (JSONException e) {
+            e.printStackTrace();
         }
-
         return bundle;
     }
 
@@ -161,34 +162,42 @@ public class CapacitorIntents extends Plugin {
     private void requestBroadcastUpdates(final PluginCall call) throws JSONException {
         final String callBackID = call.getCallbackId();
         IntentFilter ifilt = new IntentFilter();
-        JSArray jsArr = call.getArray("filters");
-        if (jsArr.length() >= 1) {
-            for (int i = 0; i < jsArr.length(); i++) {
-                ifilt.addAction(jsArr.getString(i));
+        JSArray filters = call.getArray("filters");
+        JSArray categories = call.getArray("categories");
+        // Support all Capacitor Versions
+        if (filters == null || filters.length() == 0) {
+            call.reject("Filters are required: at least 1 entry");
+            return;
+        }
+        for (int i = 0; i < filters.length(); i++) {
+            ifilt.addAction(filters.getString(i));
+        }
+        // Add Support for Categories
+        if (categories != null && categories.length() > 0) {
+            for (int i = 0; i < categories.length(); i++) {
+                ifilt.addCategory(categories.getString(i));
             }
-            receiverMap.put(
-                    callBackID,
-                    new BroadcastReceiver() {
-                        @Override
-                        public void onReceive(Context context, Intent intent) {
-                            PluginCall refCall = watchingCalls.get(callBackID);
-                            if (refCall != null) {
-                                JSObject jsO = null;
-                                try {
-                                    jsO = JSObject.fromJSONObject(getIntentJson(intent));
-                                    refCall.resolve(jsO);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
+        }
+        receiverMap.put(
+            callBackID,
+            new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    PluginCall refCall = watchingCalls.get(callBackID);
+                    if (refCall != null) {
+                        JSObject jsO = null;
+                        try {
+                            jsO = JSObject.fromJSONObject(getIntentJson(intent));
+                            refCall.resolve(jsO);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
                     }
-            );
+                }
+            }
+        );
 
-            this.getContext().registerReceiver(receiverMap.get(callBackID), ifilt);
-        } else {
-            call.reject("Filters are required: at least 1 entry");
-        }
+        this.getContext().registerReceiver(receiverMap.get(callBackID), ifilt);
     }
 
     private void removeReceiver(String callBackID) {
