@@ -43,7 +43,7 @@
     "clean": "rimraf ./dist",
     "prepublishOnly": "pnpm run build",
     "shipit": "pnpm semantic-release && npm publish --tag latest --provenance",
-    "shipit-next": "pnpm semantic-release && npm publish --tag next --provenance"
+    "shipit-next": "pnpm semantic-release && npm publish --tag next --provenance --access public"
   },
   "devDependencies": {
     "@capacitor/android": "^4.0.0",
