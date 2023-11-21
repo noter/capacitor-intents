@@ -60,6 +60,7 @@ CapacitorIntents.createBundle({ action: "com.symbol.datawedge.api.ACTION", extra
 <docgen-index>
 
 * [`registerBroadcastReceiver(...)`](#registerbroadcastreceiver)
+* [`createBundle(...)`](#createbundle)
 * [`unregisterBroadcastReceiver(...)`](#unregisterbroadcastreceiver)
 * [`sendBroadcastIntent(...)`](#sendbroadcastintent)
 
@@ -84,6 +85,21 @@ registerBroadcastReceiver(options: { filters: string[]; }, callback: (data: { [k
 --------------------
 
 
+### createBundle(...)
+
+```typescript
+createBundle(options: { action: string; extra: string; bundleConfig: { [key: string]: any; }; }) => any
+```
+
+| Param         | Type                                                                                   |
+| ------------- | -------------------------------------------------------------------------------------- |
+| **`options`** | <code>{ action: string; extra: string; bundleConfig: { [key: string]: any; }; }</code> |
+
+**Returns:** <code>any</code>
+
+--------------------
+
+
 ### unregisterBroadcastReceiver(...)
 
 ```typescript
@@ -102,12 +118,12 @@ unregisterBroadcastReceiver(options: { id: string; }) => any
 ### sendBroadcastIntent(...)
 
 ```typescript
-sendBroadcastIntent(options: { action: string; value: { [key: string]: any; }; }) => any
+sendBroadcastIntent(options: { action: string; extras: { [key: string]: any; }; }) => any
 ```
 
-| Param         | Type                                                             |
-| ------------- | ---------------------------------------------------------------- |
-| **`options`** | <code>{ action: string; value: { [key: string]: any; }; }</code> |
+| Param         | Type                                                              |
+| ------------- | ----------------------------------------------------------------- |
+| **`options`** | <code>{ action: string; extras: { [key: string]: any; }; }</code> |
 
 **Returns:** <code>any</code>
 

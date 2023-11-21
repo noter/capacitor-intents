@@ -56,16 +56,28 @@ public class CapacitorIntents extends Plugin {
     @PluginMethod
     public void sendBroadcastIntent(PluginCall call) {
         String actionToUse = call.getString("action");
-        JSObject passingData = call.getObject("value");
+        JSObject passingData = call.getObject("extras");
         Intent intended = new Intent(actionToUse);
-        try{
-            intended.putExtras(convertJsObjectToBundle(passingData));
-        }
-        catch(JSONException jsonException){
-            // Ignore this key
+        Iterator<String> keys = extras.keys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            String value = extras.getString(key);
+            intended.putExtra(key, value);
         }
 
         this.getContext().sendBroadcast(intended);
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void createBundle(PluginCall call) {
+        String action = call.getString("action");
+        String extra = call.getString("extra");
+        JSONObject bundleConfig = call.getObject("bundleConfig");
+        Bundle bundle = convertJsObjectToBundle(bundleConfig);
+        Intent intent = new Intent(action);
+        intent.putExtra(extra, bundle);
+        this.getContext().sendBroadcast(intent);
         call.resolve();
     }
 
