@@ -1,12 +1,10 @@
 export interface CapacitorIntentsPlugin {
   registerBroadcastReceiver(
-    options: { filters: string[]; categories?: string[] },
+    options: { filters: string[] },
     callback: (data: { [key: string]: any }) => void
   ): Promise<string>;
 
-  createBundle(options: { action: string; extra: string; bundleConfig: { [key: string]: any } }): Promise<void>;
-
   unregisterBroadcastReceiver(options: { id: string }): Promise<void>;
 
-  sendBroadcastIntent(options: { action: string; extras: { [key: string]: any } }): Promise<void>;
+  sendBroadcastIntent(options: { action: string; value: { [key: string]: any } }): Promise<void>;
 }
