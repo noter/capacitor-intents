@@ -1,3 +1,10 @@
+# [1.3.0-next.4](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0-next.3...v1.3.0-next.4) (2023-11-21)
+
+
+### Bug Fixes
+
+* typo ([dc678de](https://github.com/detchenkov/capacitor-intents/commit/dc678de9c156567ab985ecb0d9f6c45e57b02225))
+
 # [1.3.0-next.3](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0-next.2...v1.3.0-next.3) (2023-11-21)
 
 
