@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { WebPlugin } from '@capacitor/core';
 
 import type { CapacitorIntentsPlugin } from './definitions';
@@ -7,10 +9,6 @@ export class CapacitorIntentsPluginWeb extends WebPlugin implements CapacitorInt
     _options: { filters: string[]; categories?: string[] },
     _callback: (data: { [key: string]: any }) => void
   ): Promise<string> {
-    throw new Error('Feature not implemented in web.');
-  }
-
-  async createBundle(_options: { action: string; extra: string; bundleConfig: { [key: string]: any } }): Promise<void> {
     throw new Error('Feature not implemented in web.');
   }
 

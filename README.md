@@ -1,11 +1,11 @@
-# capacitor-intents-android 
+# capacitor-intents-for-android 
 
 Simple intent tools for Capacitor on Android platform.
 
 ## Install
 
 ```bash
-npm install capacitor-intents-android
+npm install capacitor-intents-for-android
 npx cap sync
 ```
 
@@ -53,7 +53,13 @@ CapacitorIntents.sendBroadcastIntent({
             },
         },
     };
-CapacitorIntents.createBundle({ action: "com.symbol.datawedge.api.ACTION", extra: "com.symbol.datawedge.api.SET_CONFIG", bundleConfig: profileConfig });
+CapacitorIntents.sendBroadcastIntent({ 
+    action: "com.symbol.datawedge.api.ACTION",
+    extras: {
+        "com.symbol.datawedge.api.SET_CONFIG", 
+        profileConfig
+    }
+});
 
 ```
 
@@ -95,21 +101,6 @@ unregisterBroadcastReceiver(options: { id: string; }) => any
 | Param         | Type                         |
 | ------------- | ---------------------------- |
 | **`options`** | <code>{ id: string; }</code> |
-
-**Returns:** <code>any</code>
-
---------------------
-
-
-### createBundle(...)
-
-```typescript
-createBundle(options: { action: string; extra: string; bundleConfig: { [key: string]: any; }; }) => any
-```
-
-| Param         | Type                                                                                   |
-| ------------- | -------------------------------------------------------------------------------------- |
-| **`options`** | <code>{ action: string; extra: string; bundleConfig: { [key: string]: any; }; }</code> |
 
 **Returns:** <code>any</code>
 

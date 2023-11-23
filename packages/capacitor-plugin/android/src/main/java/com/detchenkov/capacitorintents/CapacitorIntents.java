@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.webkit.MimeTypeMap;
 import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
@@ -58,105 +59,115 @@ public class CapacitorIntents extends Plugin {
         String action = call.getString("action");
         JSObject extras = call.getObject("extras");
         Intent intended = new Intent(action);
-        Iterator<String> keys = extras.keys();
-        while (keys.hasNext()) {
-            String key = keys.next();
-            String value = extras.getString(key);
-            intended.putExtra(key, value);
+
+        //from https://github.com/darryncampbell/darryncampbell-cordova-plugin-intent
+        Map<String, Object> extrasMap = new HashMap<String, Object>();
+        Bundle bundle = null;
+        String bundleKey = "";
+        if (extras != null) {
+            try {
+                JSONArray extraNames = extras.names();
+                for (int i = 0; i < extraNames.length(); i++) {
+                    String key = extraNames.getString(i);
+                    Object extrasObj = extras.get(key);
+                    if (extrasObj instanceof JSONObject) {
+                        //  The extra is a bundle
+                        bundleKey = key;
+                        bundle = toBundle((JSONObject) extras.get(key));
+                    } else {
+                        extrasMap.put(key, extras.get(key));
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
+        if (bundle != null) intended.putExtra(bundleKey, bundle);
+
+        for (String key : extrasMap.keySet()) {
+            Object value = extrasMap.get(key);
+            String valueStr = String.valueOf(value);
+            // If type is text html, the extra text must sent as HTML
+            if (key.equals(Intent.EXTRA_EMAIL)) {
+                // allows to add the email address of the receiver
+                intended.putExtra(Intent.EXTRA_EMAIL, new String[] { valueStr });
+            } else if (key.equals(Intent.EXTRA_KEY_EVENT)) {
+                // allows to add a key event object
+                try {
+                    JSONObject keyEventJson = new JSONObject(valueStr);
+                    int keyAction = keyEventJson.getInt("action");
+                    int keyCode = keyEventJson.getInt("code");
+                    KeyEvent keyEvent = new KeyEvent(keyAction, keyCode);
+                    intended.putExtra(Intent.EXTRA_KEY_EVENT, keyEvent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                if (value instanceof Boolean) {
+                    intended.putExtra(key, Boolean.valueOf(valueStr));
+                } else if (value instanceof Integer) {
+                    intended.putExtra(key, Integer.valueOf(valueStr));
+                } else if (value instanceof Long) {
+                    intended.putExtra(key, Long.valueOf(valueStr));
+                } else if (value instanceof Double) {
+                    intended.putExtra(key, Double.valueOf(valueStr));
+                } else {
+                    intended.putExtra(key, valueStr);
+                }
+            }
+        }
+
         this.getContext().sendBroadcast(intended);
         call.resolve();
     }
 
-    @PluginMethod
-    public void createBundle(PluginCall call) {
-        String action = call.getString("action");
-        String extra = call.getString("extra");
-        JSONObject bundleConfig = call.getObject("bundleConfig");
-        Bundle bundle = convertJsObjectToBundle(bundleConfig);
-        Intent intent = new Intent(action);
-        intent.putExtra(extra, bundle);
-        this.getContext().sendBroadcast(intent);
-        call.resolve();
-    }
-
-    public Bundle convertJsObjectToBundle(JSONObject jsObject) {
-        Bundle bundle = new Bundle();
-		try {
-	        for (Iterator<String> it = jsObject.keys(); it.hasNext(); ) {
-	            String key = it.next();
-	            Object value = jsObject.get(key);
-	            if (value instanceof String) {
-	                bundle.putString(key, (String) value);
-	            } else if (value instanceof Integer) {
-	                bundle.putInt(key, (Integer) value);
-	            } else if (value instanceof Double) {
-	                bundle.putDouble(key, (Double) value);
-	            } else if (value instanceof Boolean) {
-	                bundle.putBoolean(key, (Boolean) value);
-	            } else if (value instanceof JSONObject) {
-	                bundle.putBundle(key, convertJsObjectToBundle((JSONObject) value));
-	            } else if (value instanceof JSONArray) {
-	                addJsArrayToBundle(bundle,key,(JSONArray) value);
-	            } else {
-	                bundle.putString(key, value.toString());
-	            }
-	        }
-		} catch (JSONException e) {
+    private Bundle toBundle(final JSONObject obj) {
+        Bundle returnBundle = new Bundle();
+        if (obj == null) {
+            return null;
+        }
+        try {
+            Iterator<?> keys = obj.keys();
+            while (keys.hasNext()) {
+                String key = (String) keys.next();
+                Object compare = obj.get(key);
+                if (obj.get(key) instanceof String) returnBundle.putString(key, obj.getString(key)); else if (
+                    obj.get(key) instanceof Boolean
+                ) returnBundle.putBoolean(key, obj.getBoolean(key)); else if (obj.get(key) instanceof Integer) returnBundle.putInt(
+                    key,
+                    obj.getInt(key)
+                ); else if (obj.get(key) instanceof Long) returnBundle.putLong(key, obj.getLong(key)); else if (
+                    obj.get(key) instanceof Double
+                ) returnBundle.putDouble(key, obj.getDouble(key)); else if (
+                    obj.get(key).getClass().isArray() || obj.get(key) instanceof JSONArray
+                ) {
+                    JSONArray jsonArray = obj.getJSONArray(key);
+                    int length = jsonArray.length();
+                    if (jsonArray.get(0) instanceof String) {
+                        String[] stringArray = new String[length];
+                        for (int j = 0; j < length; j++) stringArray[j] = jsonArray.getString(j);
+                        returnBundle.putStringArray(key, stringArray);
+                        //returnBundle.putParcelableArray(key, obj.get);
+                    } else {
+                        if (key.equals("PLUGIN_CONFIG")) {
+                            ArrayList<Bundle> bundleArray = new ArrayList<Bundle>();
+                            for (int k = 0; k < length; k++) {
+                                bundleArray.add(toBundle(jsonArray.getJSONObject(k)));
+                            }
+                            returnBundle.putParcelableArrayList(key, bundleArray);
+                        } else {
+                            Bundle[] bundleArray = new Bundle[length];
+                            for (int k = 0; k < length; k++) bundleArray[k] = toBundle(jsonArray.getJSONObject(k));
+                            returnBundle.putParcelableArray(key, bundleArray);
+                        }
+                    }
+                } else if (obj.get(key) instanceof JSONObject) returnBundle.putBundle(key, toBundle((JSONObject) obj.get(key)));
+            }
+        } catch (JSONException e) {
             e.printStackTrace();
         }
-        return bundle;
-    }
 
-    public void addJsArrayToBundle(Bundle bundle, String key, JSONArray jsArray) throws JSONException {
-        if (jsArray.length() == 0) {
-            bundle.putStringArray(key, new String[0]); // Default to empty string array if no content
-            return;
-        }
-
-        Object firstItem = jsArray.get(0);
-        if (firstItem instanceof String) {
-            String[] strArray = new String[jsArray.length()];
-            for (int i = 0; i < jsArray.length(); i++) {
-                strArray[i] = jsArray.getString(i);
-            }
-            bundle.putStringArray(key, strArray);
-        } else if (firstItem instanceof Integer) {
-            int[] intArray = new int[jsArray.length()];
-            for (int i = 0; i < jsArray.length(); i++) {
-                intArray[i] = jsArray.getInt(i);
-            }
-            bundle.putIntArray(key, intArray);
-        } else if (firstItem instanceof Double) {
-            double[] doubleArray = new double[jsArray.length()];
-            for (int i = 0; i < jsArray.length(); i++) {
-                doubleArray[i] = jsArray.getDouble(i);
-            }
-            bundle.putDoubleArray(key, doubleArray);
-        } else if (firstItem instanceof Boolean) {
-            boolean[] boolArray = new boolean[jsArray.length()];
-            for (int i = 0; i < jsArray.length(); i++) {
-                boolArray[i] = jsArray.getBoolean(i);
-            }
-            bundle.putBooleanArray(key, boolArray);
-        } else {
-            ArrayList<Bundle> list = convertJsArrayToArrayList(jsArray);
-            bundle.putParcelableArray(key, list.toArray(new Bundle[]{}));
-        }
-    }
-
-    public ArrayList<Bundle> convertJsArrayToArrayList(JSONArray jsArray) throws JSONException {
-        ArrayList<Bundle> list = new ArrayList<>();
-
-        for (int i = 0; i < jsArray.length(); i++) {
-            Object value = jsArray.get(i);
-            if (value instanceof JSONObject) {
-                Bundle bundle = convertJsObjectToBundle((JSONObject) value);
-                list.add(bundle);
-            }
-        }
-
-        return list;
+        return returnBundle;
     }
 
     private void requestBroadcastUpdates(final PluginCall call) throws JSONException {
@@ -229,11 +240,11 @@ public class CapacitorIntents extends Plugin {
             for (int i = 0; i < arrayList.size(); i++) result.put(toJsonValue(arrayList.get(i)));
             return result;
         } else if (
-                value instanceof String ||
-                        value instanceof Boolean ||
-                        value instanceof Integer ||
-                        value instanceof Long ||
-                        value instanceof Double
+            value instanceof String ||
+            value instanceof Boolean ||
+            value instanceof Integer ||
+            value instanceof Long ||
+            value instanceof Double
         ) {
             return value;
         } else {
