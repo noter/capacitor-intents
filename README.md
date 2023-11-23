@@ -1,11 +1,11 @@
-# capacitor-intents-android 
+# capacitor-intents-for-android 
 
 Simple intent tools for Capacitor on Android platform.
 
 ## Install
 
 ```bash
-npm install capacitor-intents-android
+npm install capacitor-intents-for-android
 npx cap sync
 ```
 
@@ -37,6 +37,30 @@ CapacitorIntents.sendBroadcastIntent({
             console.log('sendCommand: ', result);
         }
     );
+
+    // Profile Creation 
+    const profileConfig = {
+        PROFILE_NAME: "Example Name",
+        PROFILE_ENABLED: "true",
+        CONFIG_MODE: "UPDATE",
+        PLUGIN_CONFIG: {
+            PLUGIN_NAME: "INTENT",
+            RESET_CONFIG: "true",
+            PARAM_LIST: {
+                intent_output_enabled: "true",
+                intent_action: "com.your.custom.action",
+                intent_delivery: "2",
+            },
+        },
+    };
+CapacitorIntents.sendBroadcastIntent({ 
+    action: "com.symbol.datawedge.api.ACTION",
+    extras: {
+        "com.symbol.datawedge.api.SET_CONFIG", 
+        profileConfig
+    }
+});
+
 ```
 
 ## API

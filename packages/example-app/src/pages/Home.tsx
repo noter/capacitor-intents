@@ -1,7 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
 import './Home.css';
 
-import { CapacitorIntents } from 'capacitor-intents-android';
+import { CapacitorIntents } from 'capacitor-intents-for-android';
 import { useCallback, useState } from 'react';
 
 const Home: React.FC = () => {
@@ -33,7 +33,7 @@ const Home: React.FC = () => {
         await CapacitorIntents.unregisterBroadcastReceiver({id: receiverId});
         receiverId = null;
       }
-      
+
       forceUpdate();
     });
 

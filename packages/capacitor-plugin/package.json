@@ -1,6 +1,6 @@
 {
-  "name": "capacitor-intents-android",
-  "version": "1.2.0",
+  "name": "capacitor-intents-for-android",
+  "version": "2.0.0",
   "description": "Simple intent tools for Capacitor on Android",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -16,14 +16,14 @@
     "ios/Plugin/",
     "BaselineCapacitorPlugin.podspec"
   ],
-  "author": "SnapTrap",
+  "author": "detchenkov",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fetttttjoe/capacitor-intents"
+    "url": "https://github.com/detchenkov/capacitor-intents"
   },
   "bugs": {
-    "url": "https://github.com/fetttttjoe/capacitor-intents/issues"
+    "url": "https://github.com/detchenkov/capacitor-intents/issues"
   },
   "keywords": [
     "capacitor",
@@ -43,7 +43,7 @@
     "clean": "rimraf ./dist",
     "prepublishOnly": "pnpm run build",
     "shipit": "pnpm semantic-release && npm publish --tag latest --provenance",
-    "shipit-next": "pnpm semantic-release && npm publish --tag next --provenance"
+    "shipit-next": "pnpm semantic-release && npm publish --tag next --provenance --access public"
   },
   "devDependencies": {
     "@capacitor/android": "^4.0.0",

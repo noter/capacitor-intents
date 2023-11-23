@@ -1,75 +1,44 @@
-# [1.2.0](https://github.com/fetttttjoe/capacitor-intents/compare/v1.1.1...v1.2.0) (2023-09-06)
-
-
-### Features
-
-* enable categories on intent ([eb63e8f](https://github.com/fetttttjoe/capacitor-intents/commit/eb63e8f100abe53dde68d40971bf01dc07a6f914))
-
-# [1.2.0-next.1](https://github.com/fetttttjoe/capacitor-intents/compare/v1.1.1...v1.2.0-next.1) (2023-09-06)
-
-
-### Features
-
-* add categories to registerBroadcastReceiver ([deec1b3](https://github.com/fetttttjoe/capacitor-intents/commit/deec1b3f8c18ee24dc5f094090c1ff2c66ff1caa))
-
-## [1.1.1](https://github.com/fetttttjoe/capacitor-intents/compare/v1.1.0...v1.1.1) (2023-09-04)
+# [1.3.0-next.5](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0-next.4...v1.3.0-next.5) (2023-11-21)
 
 
 ### Bug Fixes
 
-* include semantic-release in dev dependencies ([129529c](https://github.com/fetttttjoe/capacitor-intents/commit/129529cc1e9e287fc4082c17995c991af0a5ca9c))
+* missing categories ([b0db12e](https://github.com/detchenkov/capacitor-intents/commit/b0db12e0fbd16fc77f105f466faccc2518f63be8))
 
-# [1.1.0](https://github.com/fetttttjoe/capacitor-intents//compare/v1.0.0...v1.1.0) (2023-09-04)
-
-
-### Features
-
-* update plugin to support key values for intent extras ([cbb2f71](https://github.com/fetttttjoe/capacitor-intents//commit/cbb2f711c99c94e0377c6ddd25d8e1112ef9c1e8))
-
-# 1.0.3 (2023-09-04)
-### Bug Fixes
-
-* Add Iterator Java Package ([1fd1066]https://github.com/fetttttjoe/capacitor-intents/commit/1fd1066bd955895a7f0d1c58835bbc01d9f4b378)
-
-# 1.0.2 (2023-09-04)
-### Bug Fix
-
-* Messed up Release
-
-# 1.0.1 (2023-09-04)
-
-### Feature
-
-* Use Dynamic Key Value Pair as Intent Extra
-
-### Bug Fixes
-
-* forgot to build after new feat. ([da06cb5](https://github.com/IT-MikeS/capacitor-intents/commit/da06cb5adaa39448e46878dc9a4452e6156e4fdd))
-
-# 1.0.0 (2023-09-04)
+# [1.3.0-next.4](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0-next.3...v1.3.0-next.4) (2023-11-21)
 
 
 ### Bug Fixes
 
-* forgot to build after new feat. ([da06cb5](https://github.com/fetttttjoe/capacitor-intents//commit/da06cb5adaa39448e46878dc9a4452e6156e4fdd))
+* typo ([dc678de](https://github.com/detchenkov/capacitor-intents/commit/dc678de9c156567ab985ecb0d9f6c45e57b02225))
+
+# [1.3.0-next.3](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0-next.2...v1.3.0-next.3) (2023-11-21)
 
 
 ### Features
 
-* Multi BroadcastReveiver support ([3b56d6a](https://github.com/fetttttjoe/capacitor-intents//commit/3b56d6a1e03228ec83f262c750c5f646a05babb3))
+* bundles ([942faf4](https://github.com/detchenkov/capacitor-intents/commit/942faf4732d70629cd050d42560de172fb6f1a18))
 
-### Features
-
-* Multi BroadcastReveiver support ([3b56d6a](https://github.com/IT-MikeS/capacitor-intents/commit/3b56d6a1e03228ec83f262c750c5f646a05babb3))
-
-# 1.0.0-next.1 (2023-05-17)
+# [1.3.0-next.2](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0-next.1...v1.3.0-next.2) (2023-11-21)
 
 
 ### Bug Fixes
 
-* forgot to build after new feat. ([da06cb5](https://github.com/IT-MikeS/capacitor-intents/commit/da06cb5adaa39448e46878dc9a4452e6156e4fdd))
+* wrong export ([f50cc29](https://github.com/detchenkov/capacitor-intents/commit/f50cc290399380dee5d7c37f768e172c7e584184))
+* wrong parameters ([2c83114](https://github.com/detchenkov/capacitor-intents/commit/2c831146e14bfcd1eb269c9c6de14d3c186bfe7e))
+
+# [1.3.0-next.1](https://github.com/detchenkov/capacitor-intents/compare/v1.2.0...v1.3.0-next.1) (2023-11-21)
+
+
+### Bug Fixes
+
+* add correct extra to bundle creation; fix mistake on objectiteration ([ee81fa0](https://github.com/detchenkov/capacitor-intents/commit/ee81fa04f2a7a5d51aff38728fff2580474007f4))
+* remove extra action call ([7a60562](https://github.com/detchenkov/capacitor-intents/commit/7a6056207b7495ff87d0967141d3eea230eb17e7))
+* took MR from https://github.com/tkvw/capacitor-intents/tree/main ([1ccafe6](https://github.com/detchenkov/capacitor-intents/commit/1ccafe69efa98c89037dedfdb90e364b60d4a853))
+* wrong copy paste on extra in bundle creation ([e45ccba](https://github.com/detchenkov/capacitor-intents/commit/e45ccbaab065f7fc33a1bf6225eec5293dea5b68))
 
 
 ### Features
 
-* Multi BroadcastReveiver support ([3b56d6a](https://github.com/IT-MikeS/capacitor-intents/commit/3b56d6a1e03228ec83f262c750c5f646a05babb3))
+* first publish to npm ([e684d53](https://github.com/detchenkov/capacitor-intents/commit/e684d53a5255e636fffcf952393d7b429bd4c62a))
+* first test for bundle creation based on object ([6ed2630](https://github.com/detchenkov/capacitor-intents/commit/6ed26302dc13aa766e68716f2ab83e0a09e26709))

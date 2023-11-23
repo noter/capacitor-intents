@@ -1,4 +1,4 @@
-package com.snaptrap.capacitorintents;
+package com.detchenkov.capacitorintents;
 
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.webkit.MimeTypeMap;
 import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
@@ -55,18 +56,118 @@ public class CapacitorIntents extends Plugin {
 
     @PluginMethod
     public void sendBroadcastIntent(PluginCall call) {
-        String actionToUse = call.getString("action");
-        JSObject extraData = call.getObject("extras");
-        Intent intended = new Intent(actionToUse);
-        Iterator<String> keys = extraData.keys();
+        String action = call.getString("action");
+        JSObject extras = call.getObject("extras");
+        Intent intended = new Intent(action);
 
-        while (keys.hasNext()) {
-            String key = keys.next();
-            String value = extraData.getString(key);
-            intended.putExtra(key, value);
+        //from https://github.com/darryncampbell/darryncampbell-cordova-plugin-intent
+        Map<String, Object> extrasMap = new HashMap<String, Object>();
+        Bundle bundle = null;
+        String bundleKey = "";
+        if (extras != null) {
+            try {
+                JSONArray extraNames = extras.names();
+                for (int i = 0; i < extraNames.length(); i++) {
+                    String key = extraNames.getString(i);
+                    Object extrasObj = extras.get(key);
+                    if (extrasObj instanceof JSONObject) {
+                        //  The extra is a bundle
+                        bundleKey = key;
+                        bundle = toBundle((JSONObject) extras.get(key));
+                    } else {
+                        extrasMap.put(key, extras.get(key));
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
+        if (bundle != null) intended.putExtra(bundleKey, bundle);
+
+        for (String key : extrasMap.keySet()) {
+            Object value = extrasMap.get(key);
+            String valueStr = String.valueOf(value);
+            // If type is text html, the extra text must sent as HTML
+            if (key.equals(Intent.EXTRA_EMAIL)) {
+                // allows to add the email address of the receiver
+                intended.putExtra(Intent.EXTRA_EMAIL, new String[] { valueStr });
+            } else if (key.equals(Intent.EXTRA_KEY_EVENT)) {
+                // allows to add a key event object
+                try {
+                    JSONObject keyEventJson = new JSONObject(valueStr);
+                    int keyAction = keyEventJson.getInt("action");
+                    int keyCode = keyEventJson.getInt("code");
+                    KeyEvent keyEvent = new KeyEvent(keyAction, keyCode);
+                    intended.putExtra(Intent.EXTRA_KEY_EVENT, keyEvent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                if (value instanceof Boolean) {
+                    intended.putExtra(key, Boolean.valueOf(valueStr));
+                } else if (value instanceof Integer) {
+                    intended.putExtra(key, Integer.valueOf(valueStr));
+                } else if (value instanceof Long) {
+                    intended.putExtra(key, Long.valueOf(valueStr));
+                } else if (value instanceof Double) {
+                    intended.putExtra(key, Double.valueOf(valueStr));
+                } else {
+                    intended.putExtra(key, valueStr);
+                }
+            }
+        }
+
         this.getContext().sendBroadcast(intended);
         call.resolve();
+    }
+
+    private Bundle toBundle(final JSONObject obj) {
+        Bundle returnBundle = new Bundle();
+        if (obj == null) {
+            return null;
+        }
+        try {
+            Iterator<?> keys = obj.keys();
+            while (keys.hasNext()) {
+                String key = (String) keys.next();
+                Object compare = obj.get(key);
+                if (obj.get(key) instanceof String) returnBundle.putString(key, obj.getString(key)); else if (
+                    obj.get(key) instanceof Boolean
+                ) returnBundle.putBoolean(key, obj.getBoolean(key)); else if (obj.get(key) instanceof Integer) returnBundle.putInt(
+                    key,
+                    obj.getInt(key)
+                ); else if (obj.get(key) instanceof Long) returnBundle.putLong(key, obj.getLong(key)); else if (
+                    obj.get(key) instanceof Double
+                ) returnBundle.putDouble(key, obj.getDouble(key)); else if (
+                    obj.get(key).getClass().isArray() || obj.get(key) instanceof JSONArray
+                ) {
+                    JSONArray jsonArray = obj.getJSONArray(key);
+                    int length = jsonArray.length();
+                    if (jsonArray.get(0) instanceof String) {
+                        String[] stringArray = new String[length];
+                        for (int j = 0; j < length; j++) stringArray[j] = jsonArray.getString(j);
+                        returnBundle.putStringArray(key, stringArray);
+                        //returnBundle.putParcelableArray(key, obj.get);
+                    } else {
+                        if (key.equals("PLUGIN_CONFIG")) {
+                            ArrayList<Bundle> bundleArray = new ArrayList<Bundle>();
+                            for (int k = 0; k < length; k++) {
+                                bundleArray.add(toBundle(jsonArray.getJSONObject(k)));
+                            }
+                            returnBundle.putParcelableArrayList(key, bundleArray);
+                        } else {
+                            Bundle[] bundleArray = new Bundle[length];
+                            for (int k = 0; k < length; k++) bundleArray[k] = toBundle(jsonArray.getJSONObject(k));
+                            returnBundle.putParcelableArray(key, bundleArray);
+                        }
+                    }
+                } else if (obj.get(key) instanceof JSONObject) returnBundle.putBundle(key, toBundle((JSONObject) obj.get(key)));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return returnBundle;
     }
 
     private void requestBroadcastUpdates(final PluginCall call) throws JSONException {
