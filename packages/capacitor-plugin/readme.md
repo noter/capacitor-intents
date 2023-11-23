@@ -1,19 +1,21 @@
-# capacitor-intents-android
+# capacitor-intents-for-android 
 
 Simple intent tools for Capacitor on Android platform.
 
 ## Install
 
 ```bash
-npm i capacitor-intents-android
+npm install capacitor-intents-for-android
 npx cap sync
 ```
 
 ## Usage
 
+See `example-app` in `packages` folder.
+
 ## Simple Example Zebra Device
+Register Listener:
 ```Typescript
-// Register Listener:
 CapacitorIntents.registerBroadcastReceiver({
     filters: ['com.your.custom.action', 'com.symbol.datawedge.api.RESULT_ACTION'],
     categories: ['android.intent.category.DEFAULT']
@@ -45,13 +47,20 @@ const profileConfig = {
         PLUGIN_NAME: "INTENT",
         RESET_CONFIG: "true",
         PARAM_LIST: {
-            intent_output_enabled: "true",
+            intent_output_enabled: "true", //attention for Zebra true and false are string type
             intent_action: "com.your.custom.action",
-            intent_delivery: "2",
+            intent_delivery: 2,
         },
     },
 };
-CapacitorIntents.createBundle({ action: "com.symbol.datawedge.api.ACTION", extra: "com.symbol.datawedge.api.SET_CONFIG", bundleConfig: profileConfig });
+
+CapacitorIntents.sendBroadcastIntent({ 
+    action: "com.symbol.datawedge.api.ACTION",
+    extras: {
+        "com.symbol.datawedge.api.SET_CONFIG", 
+        profileConfig
+    }
+});
 
 ```
 
