@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0...v1.3.1) (2023-11-23)
+
+
+### Bug Fixes
+
+* updated ReadMe ([131fe23](https://github.com/detchenkov/capacitor-intents/commit/131fe23272cda969317df9ad8a0f63f88ea43081))
+
 # [1.3.0](https://github.com/detchenkov/capacitor-intents/compare/v1.2.0...v1.3.0) (2023-11-23)
 
 
