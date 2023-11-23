@@ -38,21 +38,22 @@ CapacitorIntents.sendBroadcastIntent({
         }
     );
 
-    // Profile Creation 
-    const profileConfig = {
-        PROFILE_NAME: "Example Name",
-        PROFILE_ENABLED: "true",
-        CONFIG_MODE: "UPDATE",
-        PLUGIN_CONFIG: {
-            PLUGIN_NAME: "INTENT",
-            RESET_CONFIG: "true",
-            PARAM_LIST: {
-                intent_output_enabled: "true",
-                intent_action: "com.your.custom.action",
-                intent_delivery: "2",
-            },
+// Profile Creation 
+const profileConfig = {
+    PROFILE_NAME: "Example Name",
+    PROFILE_ENABLED: "true",
+    CONFIG_MODE: "UPDATE",
+    PLUGIN_CONFIG: {
+        PLUGIN_NAME: "INTENT",
+        RESET_CONFIG: "true",
+        PARAM_LIST: {
+            intent_output_enabled: "true", //attention for Zebra true and false are string type
+            intent_action: "com.your.custom.action",
+            intent_delivery: 2,
         },
-    };
+    },
+};
+
 CapacitorIntents.sendBroadcastIntent({ 
     action: "com.symbol.datawedge.api.ACTION",
     extras: {
