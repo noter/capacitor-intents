@@ -143,10 +143,10 @@ importers:
         version: 18.2.16
       '@vitejs/plugin-legacy':
         specifier: ^4.0.2
-        version: 4.1.1(terser@5.24.0)(vite@4.5.0)
+        version: 4.1.1(terser@5.24.0)(vite@4.5.1)
       '@vitejs/plugin-react':
         specifier: ^3.1.0
-        version: 3.1.0(vite@4.5.0)
+        version: 3.1.0(vite@4.5.1)
       cypress:
         specifier: ^12.7.0
         version: 12.17.4
@@ -166,8 +166,8 @@ importers:
         specifier: ^4.9.3
         version: 4.9.5
       vite:
-        specifier: ^4.1.0
-        version: 4.5.0(@types/node@20.9.3)(terser@5.24.0)
+        specifier: ^4.5.1
+        version: 4.5.1(@types/node@20.9.3)(terser@5.24.0)
       vitest:
         specifier: ^0.29.2
         version: 0.29.8(jsdom@21.1.2)(terser@5.24.0)
@@ -2613,7 +2613,7 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@vitejs/plugin-legacy@4.1.1(terser@5.24.0)(vite@4.5.0):
+  /@vitejs/plugin-legacy@4.1.1(terser@5.24.0)(vite@4.5.1):
     resolution: {integrity: sha512-um3gbVouD2Q/g19C0qpDfHwveXDCAHzs8OC3e9g6aXpKoD1H14himgs7wkMnhAynBJy7QqUoZNAXDuqN8zLR2g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -2628,12 +2628,12 @@ packages:
       regenerator-runtime: 0.13.11
       systemjs: 6.14.2
       terser: 5.24.0
-      vite: 4.5.0(@types/node@20.9.3)(terser@5.24.0)
+      vite: 4.5.1(@types/node@20.9.3)(terser@5.24.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-react@3.1.0(vite@4.5.0):
+  /@vitejs/plugin-react@3.1.0(vite@4.5.1):
     resolution: {integrity: sha512-AfgcRL8ZBhAlc3BFdigClmTUMISmmzHn7sB2h9U1odvc5U/MjWXsAaz18b/WoppUTDBzxOJwo2VdClfUcItu9g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -2644,7 +2644,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.23.3(@babel/core@7.23.3)
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.5.0(@types/node@20.9.3)(terser@5.24.0)
+      vite: 4.5.1(@types/node@20.9.3)(terser@5.24.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -7815,7 +7815,7 @@ packages:
       mlly: 1.4.2
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.5.0(@types/node@20.9.3)(terser@5.24.0)
+      vite: 4.5.1(@types/node@20.9.3)(terser@5.24.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -7827,8 +7827,8 @@ packages:
       - terser
     dev: true
 
-  /vite@4.5.0(@types/node@20.9.3)(terser@5.24.0):
-    resolution: {integrity: sha512-ulr8rNLA6rkyFAlVWw2q5YJ91v098AFQ2R0PRFwPzREXOUJQPtFUG0t+/ZikhaOCDqFoDhN6/v8Sq0o4araFAw==}
+  /vite@4.5.1(@types/node@20.9.3)(terser@5.24.0):
+    resolution: {integrity: sha512-AXXFaAJ8yebyqzoNB9fu2pHoo/nWX+xZlaRwoeYUxEqBO+Zj4msE5G+BhGBll9lYEKv9Hfks52PAF2X7qDYXQA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -7917,7 +7917,7 @@ packages:
       tinybench: 2.5.1
       tinypool: 0.4.0
       tinyspy: 1.1.1
-      vite: 4.5.0(@types/node@20.9.3)(terser@5.24.0)
+      vite: 4.5.1(@types/node@20.9.3)(terser@5.24.0)
       vite-node: 0.29.8(@types/node@20.9.3)(terser@5.24.0)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
