@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/detchenkov/capacitor-intents/compare/v1.3.1...v1.4.0) (2024-01-19)
+
+
+### Features
+
+* version bump ([69226cd](https://github.com/detchenkov/capacitor-intents/commit/69226cdc6b0459976c04ed2cc23088790aeada38))
+* version bump ([4c32b62](https://github.com/detchenkov/capacitor-intents/commit/4c32b62749260f6ecc6a2f90128447135a04dc6f))
+
 ## [1.3.1](https://github.com/detchenkov/capacitor-intents/compare/v1.3.0...v1.3.1) (2023-11-23)
 
 
