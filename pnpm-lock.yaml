@@ -15,11 +15,11 @@ importers:
   packages/capacitor-plugin:
     devDependencies:
       '@capacitor/android':
-        specifier: ^4.0.0
-        version: 4.8.1(@capacitor/core@4.8.1)
+        specifier: ^5.0.0
+        version: 5.5.1(@capacitor/core@5.5.1)
       '@capacitor/core':
-        specifier: ^4.0.0
-        version: 4.8.1
+        specifier: ^5.0.0
+        version: 5.5.1
       '@capacitor/docgen':
         specifier: ^0.2.1
         version: 0.2.1
@@ -1375,14 +1375,6 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@capacitor/android@4.8.1(@capacitor/core@4.8.1):
-    resolution: {integrity: sha512-nOltfBbMyMMukFj8p5FMcHmtw8UF5uyXS8T1P5HKuU/eFrazeDWK+4494Rc9jLhSg/kam5886AJUPZ9UESHCqw==}
-    peerDependencies:
-      '@capacitor/core': ^4.8.0
-    dependencies:
-      '@capacitor/core': 4.8.1
-    dev: true
-
   /@capacitor/android@5.5.1(@capacitor/core@5.5.1):
     resolution: {integrity: sha512-WTnPnpaEvTtaEtTNRbh06Y1afF7A4plY/4uajAL0WW8tdR1FxieadF357yKGiAT6CudI/B+eOu6rxn6qWuphKg==}
     peerDependencies:
@@ -1423,12 +1415,6 @@ packages:
       xml2js: 0.5.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@capacitor/core@4.8.1:
-    resolution: {integrity: sha512-GIUGw1P2Iyh4jb8ZAIWRPtR2zH6ARcpwN5pn/vmIJiTujQBMQmF62s5L3m4XMQSVKlbw8iCPi/YKjlUL+EjKhA==}
-    dependencies:
-      tslib: 2.6.2
     dev: true
 
   /@capacitor/core@5.5.1:
