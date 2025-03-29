@@ -1,4 +1,4 @@
-# capacitor-intents-for-android 
+# capacitor-intents-for-android
 
 Simple intent tools for Capacitor on Android platform.
 
@@ -9,12 +9,23 @@ npm install capacitor-intents-for-android
 npx cap sync
 ```
 
+## Compatibility
+
+- Capacitor 7.x
+- Android Gradle Plugin 8.8.0
+- Gradle 8.13
+- Supports Android SDK 35
+
+Version 1.5.0 and above supports Capacitor 7. For Capacitor 5, use version 1.4.0.
+
 ## Usage
 
 See `example-app` in `packages` folder.
 
 ## Simple Example Zebra Device
+
 Register Listener:
+
 ```Typescript
 CapacitorIntents.registerBroadcastReceiver({
     filters: ['com.your.custom.action', 'com.symbol.datawedge.api.RESULT_ACTION'],
@@ -25,8 +36,8 @@ CapacitorIntents.registerBroadcastReceiver({
         console.log('Received Intent: ', intent.extras);
     })
 
-CapacitorIntents.sendBroadcastIntent({ 
-    action: 'com.your.custom.action', 
+CapacitorIntents.sendBroadcastIntent({
+    action: 'com.your.custom.action',
     // You can add as many extra Key : Value Pairs as Needed
     extras: {
         "com.symbol.datawedge.api.SOFT_SCAN_TRIGGER":   "TOGGLE_SCANNING"
@@ -38,7 +49,7 @@ CapacitorIntents.sendBroadcastIntent({
         }
     );
 
-// Profile Creation 
+// Profile Creation
 const profileConfig = {
     PROFILE_NAME: "Example Name",
     PROFILE_ENABLED: "true",
@@ -54,10 +65,10 @@ const profileConfig = {
     },
 };
 
-CapacitorIntents.sendBroadcastIntent({ 
+CapacitorIntents.sendBroadcastIntent({
     action: "com.symbol.datawedge.api.ACTION",
     extras: {
-        "com.symbol.datawedge.api.SET_CONFIG", 
+        "com.symbol.datawedge.api.SET_CONFIG",
         profileConfig
     }
 });

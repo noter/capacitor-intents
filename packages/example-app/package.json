@@ -11,11 +11,11 @@
     "test.unit": "vitest"
   },
   "dependencies": {
-    "@capacitor/app": "^5.0.2",
-    "@capacitor/core": "^5.0.3",
-    "@capacitor/haptics": "^5.0.2",
-    "@capacitor/keyboard": "^5.0.2",
-    "@capacitor/status-bar": "^5.0.2",
+    "@capacitor/app": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/haptics": "^7.0.0",
+    "@capacitor/keyboard": "^7.0.0",
+    "@capacitor/status-bar": "^7.0.0",
     "@ionic/react": "^7.0.0",
     "@ionic/react-router": "^7.0.0",
     "@types/react-router": "^5.1.20",
@@ -28,8 +28,8 @@
     "react-router-dom": "^5.3.4"
   },
   "devDependencies": {
-    "@capacitor/android": "^5.0.2",
-    "@capacitor/cli": "^5.0.3",
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/cli": "^7.0.0",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
