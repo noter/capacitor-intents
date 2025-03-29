@@ -1,0 +1,19 @@
+{
+  "name": "@noter/capacitor-intents",
+  "version": "1.5.0",
+  "description": "Simple intent tools for Capacitor on Android platform.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noter/capacitor-intents.git"
+  },
+  "author": "noter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noter/capacitor-intents/issues"
+  },
+  "homepage": "https://github.com/noter/capacitor-intents#readme"
+}
